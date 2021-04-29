@@ -1,1 +1,9 @@
-{{ items }}
+<div *ngIf="items.length == 0">Kraami pole</div>
+
+<div *ngFor="let item of items">
+    <img claas="item-pict" src="{{item.imgSrc}}">
+   <div class="item-title"> {{ item.title }}</div>
+   <div class="item-price"> {{ item.price }}</div>
+   <button class="btn btn-danger"(click)="onAddToCart(item)">Lisa korvi</button>
+</div>
+ 

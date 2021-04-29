@@ -11,6 +11,12 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.items);
   }
+
+onAddToCart(item) {
+  this.items = [];
+  this.items.push(item);
+}
 
 }
