@@ -10,23 +10,36 @@ export class CartComponent implements OnInit {
   //kooloniga annan tyypi
   //võrdusmärgiga annan väärtust ehk tyhi massiiv
 
-  cartItems: {title: string, price: string, imgSrc: string, category: string }[] = []
+  cartItems: {title: string, price: number, imgSrc: string, category: string }[] = []
+  sumOfCart = 0;
+
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.itemsInCart;
+    this.calculateSumOfCart();
   }
 
   onEmptyCart() {
     this.cartService.itemsInCart = [];
     this.cartItems = this.cartService.itemsInCart;
+    this.calculateSumOfCart();
   }
 
   onRemoveFromCart(i: number) {
     this.cartService.itemsInCart.splice(i, 1);
+    this.calculateSumOfCart();
   }
 
+
+calculateSumOfCart() {
+  this.sumOfCart = 0;
+  this.cartItems.forEach(cartItem => {
+    this.sumOfCart = this.sumOfCart + cartItem.price;  
+  });
+
+  } 
 }
 
 // home.ts -is on items = [{item}]
