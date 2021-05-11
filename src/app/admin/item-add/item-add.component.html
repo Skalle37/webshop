@@ -2,10 +2,17 @@
 <br>
 <br>
 
-<form (ngSubmit)="onSubmit(form)" #form="ngForm">
-    <label>Nimetus</label>
-    <input type="text" ngModel name="title">
+<form (ngSubmit)="onSubmit(addItemform)" #addItemform="ngForm">
+    <label>Nimetus</label><br>
+    <input type="text" ngModel name="title" placeholder="Sisesta nimetus" required><br><br>
+    <label>Hind</label><br>
+    <input type="text" ngModel name="price" pattern="^[0-9]+$"placeholder="Sisesta hind" required><br><br>
+    <label>Kategooria</label><br>
+    <input type="text" ngModel name="category" pattern="^[A-Za-z]+$" placeholder="Sisesta kategooria" required><br><br>
+    <label>Foto</label><br>
+    <input type="text" ngModel name="imgSrc" placeholder="Sisesta foto Url" required><br><br>
     <br>
 
-    <button class="btn btn-success">Sisesta</button>
+    <button [disabled]="addItemform.invalid" class="btn btn-success">SISESTA</button>
+    <!-- property binding -->
 </form>
