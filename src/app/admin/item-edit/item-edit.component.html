@@ -1,1 +1,21 @@
 <button routerLink="/admin">TAGASI</button>
+
+
+<br>
+<br>
+<!-- formgroup nõuab app.module sisse ReactiveFormsModule -->
+
+<form (ngSubmit)="onSubmit(editItemForm)" [formGroup]="editItemForm">
+    <label>Nimetus</label><br>
+    <input type="text" formControlName="title" placeholder="Sisesta nimetus" required><br><br>
+    <label>Hind</label><br>
+    <input type="number" formControlName="price" placeholder="Sisesta hind" required><br><br>
+    <label>Kategooria</label><br>
+    <input type="text" formControlName="category" pattern="^[A-Za-z]+$" placeholder="Sisesta kategooria" required><br><br>
+    <label>Foto</label><br>
+    <input type="text" formControlName="imgSrc" placeholder="Sisesta foto Url" required><br><br>
+    <br>
+
+    <button [disabled]="editItemForm.invalid" class="btn btn-success">MUUDA</button>
+    <!-- property binding -->
+</form>

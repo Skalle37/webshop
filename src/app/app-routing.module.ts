@@ -12,9 +12,9 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'admin', component: AdminHomeComponent},
   {path: 'ostukorv', component: CartComponent},
-  {path: 'toode/:itemId', component: ViewComponent},
+  {path: 'toode/:itemId/', component: ViewComponent},
   {path: 'admin/lisa-ese', component: ItemAddComponent},
-  {path: 'admin/muuda_ese', component: ItemEditComponent},
+  {path: 'admin/muuda-ese/:itemId', component: ItemEditComponent},
   {path: 'admin/esemete-list', component: ItemListComponent},
 ];
 
