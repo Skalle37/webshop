@@ -1,9 +1,18 @@
+
+<!-- {{ kuupaev | date }} <br>
+{{ kuupaev | date:"fulldate" }} <br>
+{{ kuupaev | date:"shortdate" }} <br>
+{{ kuupaev | date:"mediumTime" }} <br>
+{{ kuupaev | date:"shortTime" }} <br>
+
+{{ arv | percent }} <br>
+{{ suurarv | percent }} <br> -->
 <div *ngIf="items.length == 0">Kraami pole</div>
 
 <div *ngFor="let item of items; let i = index">
    <img class="item-pict" routerLink="toode/{{i}}" src="{{item.imgSrc}}">
-   <div class="item-title"> {{ item.title }}</div>
-   <div class="item-price"> {{ item.price }}</div>
+   <div class="item-title"> {{ item.title | shortenTitle }}</div>
+   <div class="item-price"> {{ item.price | itemPrice }}</div>
    <button class="btn btn-danger"(click)="onAddToCart(item)">Lisa korvi</button>
    <!-- ( sündmuse ) event binding sündmuse sidumine -->
 </div>

@@ -5,7 +5,7 @@
 <div *ngFor="let cartItem of cartItems; let i = index">
  <img class="item-pict" src="{{cartItem.imgSrc}}">
  <div class="item-title"> {{ cartItem.title }}</div>
- <div class="item-price"> {{ cartItem.price }}
+ <div class="item-price"> {{ cartItem.price | itemPrice }}
      <!-- string interpolation -->
      <button (click)="onRemoveFromCart(i)">X</button>
     <br>
@@ -15,14 +15,14 @@
 <br>
 <br>
 
-<div *ngIf="cartItems.length > 0">KOKKU: {{ sumOfCart }} EUR</div>
+<div *ngIf="cartItems.length > 0">KOKKU: {{ sumOfCart | itemPrice }} EUR</div>
 
 <!-- olemasolevad muutujad:
 1. muutuja, mis on export class All
 2. HTML- s tehtud uued muutujad "let" liidese abiga
 
 vasakul on angulari osa või html-i osa
-parema{l pool võrdusmärki on:
+paremal pool võrdusmärki on:
 muutuja .ts- i seest
 muutuja html- i seest (let liides)
 css- i klass

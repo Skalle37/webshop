@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../models/item.model';
 import { CartService } from './cart.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class CartComponent implements OnInit {
   //kooloniga annan tyypi
   //võrdusmärgiga annan väärtust ehk tyhi massiiv
 
-  cartItems: { title: string, price: number, imgSrc: string, category: string }[] = []
+  cartItems: Item[] = []
   sumOfCart = 0;
 
 

@@ -13,6 +13,13 @@ import { ItemListComponent } from './admin/item-list/item-list.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewComponent } from './home/view/view.component';
+import { ItemPricePipe } from './pipes/item-price.pipe';
+//import { TitlePipe } from './pipes/shorten/title.pipe';
+import { ShortenTitlePipe } from './pipes/shorten-title.pipe';
+
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,15 +32,30 @@ import { ViewComponent } from './home/view/view.component';
     ItemEditComponent,
     ItemListComponent,
     AdminHomeComponent,
-    ViewComponent
+    ViewComponent,
+    ItemPricePipe,
+    //TitlePipe,
+    ShortenTitlePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}
