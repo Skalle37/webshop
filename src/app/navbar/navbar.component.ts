@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +8,26 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(private translate: TranslateService) { }
+  sumOfCart = 0;
+  constructor(private translate: TranslateService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
-    console.log("jõudsin navbar componenti")
+    console.log("jngOnInit läks navbar'is käima");
+    // this.sumOfCart = 0;
+    // this.cartService.getItemsInCart().forEach(cartItem => {
+    //   this.sumOfCart = this.sumOfCart + cartItem.price;
+    // });
+
+    this.cartService.cartChanged.subscribe(() => {
+
+      this.sumOfCart = 0;
+      this.cartService.getItemsInCart().forEach(cartItem => {
+        this.sumOfCart = this.sumOfCart + cartItem.price;
+    });
+    })
+
+    
   }
 
   useLanguage(language: string): void {

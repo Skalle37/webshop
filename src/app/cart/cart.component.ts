@@ -39,7 +39,7 @@ calculateSumOfCart() {
   this.cartItems.forEach(cartItem => {
     this.sumOfCart = this.sumOfCart + cartItem.price;  
   });
-
+  this.cartService.cartChanged.next();
   } 
 }
 
