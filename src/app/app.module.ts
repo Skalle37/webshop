@@ -21,6 +21,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-settings.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ViewComponent,
     ItemPricePipe,
     //TitlePipe,
-    ShortenTitlePipe
+    ShortenTitlePipe,
+    CarouselSettingsComponent
   ],
   imports: [
     BrowserModule,

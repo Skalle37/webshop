@@ -3,6 +3,7 @@ import { CartService } from '../cart/cart.service';
 import { Item } from '../models/item.model';
 import { ItemService } from '../services/item.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselService } from '../admin/carousel-settings/carousel.service';
 
 @Component({
   selector: 'app-home',
@@ -12,20 +13,24 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent implements OnInit {
   items: Item[] = [];
   pauseOnHover = false;
-  images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  //images = [700, 533, 807, 124, 545, 131].map((n) => `https://picsum.photos/id/${n}/900/500`);
+
+  images: any[] = [];
   kuupaev = new Date();
   arv = 0.5;
   suurarv = 500000;
 
   constructor(private cartService: CartService, 
     private itemService: ItemService,
-    private config: NgbCarouselConfig)
+    private config: NgbCarouselConfig,
+    private carouselService: CarouselService)
    { 
 
    }
   // kaks komponenti ei saa omavahel suhelda
 
   ngOnInit(): void { 
+    this.images = this.carouselService.images;
     this.items = this.itemService.items;
     this.config.interval = 10000;
     this.config.wrap = true;
