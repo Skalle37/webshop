@@ -4,6 +4,7 @@ import { Item } from '../models/item.model';
 import { ItemService } from '../services/item.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselService } from '../admin/carousel-settings/carousel.service';
+import { CarouselImage } from '../models/carousel-image.model';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   pauseOnHover = false;
   //images = [700, 533, 807, 124, 545, 131].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
-  images: any[] = [];
+  images: CarouselImage[] = [];
   kuupaev = new Date();
   arv = 0.5;
   suurarv = 500000;
@@ -32,10 +33,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void { 
     this.images = this.carouselService.images;
     this.items = this.itemService.items;
-    this.config.interval = 10000;
-    this.config.wrap = true;
-    this.config.keyboard = true;
-    this.config.pauseOnHover = true; 
+    this.config.interval = this.carouselService.carouselSettings.interval;
+    this.config.wrap = this.carouselService.carouselSettings.wrap;
+    this.config.keyboard = this.carouselService.carouselSettings.keyboard;
+    this.config.pauseOnHover = this.carouselService.carouselSettings.pauseOnHover;
   }
 
   // onSaveChanges() {

@@ -1,3 +1,25 @@
+
+<button routerLink="/admin">Mine tagasi</button>
+
+<br>
+<br>
+
+<form (ngSubmit)="onChangeSettings()" [formGroup]="changeSettingsForm">
+    <label>Liikumise kiirus</label>
+    <input type="number"formControlName="interval" required><br>
+    <label>Käib ringi</label>
+    <input type="checkbox"formControlName="wrap"><br>
+    <label>Klaviatuuriga liigutatav</label>
+    <input type="checkbox"formControlName="keyboard"><br>
+    <label>Hiirega paus</label>
+    <input type="checkbox"formControlName="pauseOnHover"><br>
+    <button>SALVESTA</button>
+
+</form>
+
+<br>
+<br>
+
 <div class="images">
     <div class="image" *ngFor="let image of images; let i = index">
         <img src="{{image.url}}">
@@ -9,7 +31,9 @@
     </div>
 </div>
 
-<form (ngSubmit)="onSubmit(addImageForm)" #addImageForm="ngForm">
+<br>
+<br>
+<form (ngSubmit)="onAddImage(addImageForm)" #addImageForm="ngForm">
     <label>Pilt</label>
     <input type="text" ngModel name="url" required><br>
     <label>Pealkiri</label>

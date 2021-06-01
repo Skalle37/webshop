@@ -1,0 +1,15 @@
+<button routerLink="/admin">Mine tagasi</button>
+
+<br>
+<br>
+
+<form (ngSubmit)="onSubmit(addCategoryForm)" #addCategoryForm="ngForm">
+    <input type="text" ngModel name="category" required>
+    <button [disabled]="addCategoryForm.invalid">Lisa kategooria</button>
+</form>
+<br>
+<br>
+<div *ngFor="let category of categories; let i = index">
+    <div>{{ category}}</div>
+    <button (click)="onCategoryDelete(i)">X</button><br>
+</div>
