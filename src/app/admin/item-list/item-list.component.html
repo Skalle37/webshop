@@ -1,4 +1,8 @@
 <button routerLink="/admin">TAGASI</button>
+<br>
+
+<button (click)="onSaveItemsToDatabase()">Salvesta esemed andmebaasi</button>
+<br>
 
 <div *ngFor="let item of items; let i = index">
     <div>{{ item.title }}</div>

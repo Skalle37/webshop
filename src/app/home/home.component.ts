@@ -32,7 +32,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void { 
     this.images = this.carouselService.images;
-    this.items = this.itemService.items;
+    // this.items = this.itemService.items;
+    this.itemService.getItemsFromDatabase().subscribe(itemsFromDb => {
+      this.itemService.items = [];
+      for (const key in itemsFromDb) {
+        this.items.push(itemsFromDb[key]);
+        this.itemService.items.push(itemsFromDb[key]);
+      }
+      // this.items = itemsFromDb;
+      // this.itemService.items = itemsFromDb;
+    });
     this.config.interval = this.carouselService.carouselSettings.interval;
     this.config.wrap = this.carouselService.carouselSettings.wrap;
     this.config.keyboard = this.carouselService.carouselSettings.keyboard;

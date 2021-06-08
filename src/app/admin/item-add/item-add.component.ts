@@ -22,7 +22,8 @@ export class ItemAddComponent implements OnInit {
   onSubmit(form: NgForm) { 
     alert(form);
     if (form.valid) {
-      this.itemService.items.push(form.value);
+      // this.itemService.items.push(form.value);
+      this.itemService.addItemToDatabase(form.value).subscribe();
     } 
   }
 }
