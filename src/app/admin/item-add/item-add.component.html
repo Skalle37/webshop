@@ -6,10 +6,14 @@
     <label>Nimetus</label><br>
     <input type="text" ngModel name="title" placeholder="Sisesta nimetus" required><br><br>
     <label>Hind</label><br>
-    <input type="text" ngModel name="price" pattern="^[0-9]+$"placeholder="Sisesta hind" required><br><br>
+    <input type="number" ngModel name="price" pattern="^[0-9]+$"placeholder="Sisesta hind" required><br><br>
+    <label>ID</label><br>
+    <input type="text" pattern="^[0-9]+$"minlenght="8" maxlength="8" ngModel name="id" pattern="^[0-9]+$"placeholder="" required><br><br>
+
     <label>Kategooria</label><br>
     <!-- <input type="text" ngModel name="category" pattern="^[A-Za-z]+$" placeholder="Sisesta kategooria" required><br><br> -->
-    <select>
+    <select ngModel name="category">
+        <option value="" disable selected>Vali kategooria</option>
         <option *ngFor="let category of categories"   value="{{ category }}">{{ category }}</option>
     </select><br>
     <label>Foto</label><br>

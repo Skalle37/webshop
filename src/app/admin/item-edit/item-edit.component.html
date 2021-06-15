@@ -10,8 +10,14 @@
     <input type="text" formControlName="title" placeholder="Sisesta nimetus" required><br><br>
     <label>Hind</label><br>
     <input type="number" formControlName="price" placeholder="Sisesta hind" required><br><br>
+    <label>ID</label><br>
+    <input type="text" pattern="^[0-9]+$"minlenght="8" maxlength="8" formControlName="id"  pattern="^[0-9]+$"placeholder="" required><br><br>
     <label>Kategooria</label><br>
-    <input type="text" formControlName="category" pattern="^[A-Za-z]+$" placeholder="Sisesta kategooria" required><br><br>
+    <select formControlName="category">
+        <option *ngFor="let category of categories"   value="{{ category }}">{{ category }}</option>
+    </select>
+    <br>
+    <!-- <input type="text" formControlName="category" pattern="^[A-Za-z]+$" placeholder="Sisesta kategooria" required><br><br> -->
     <label>Foto</label><br>
     <input type="text" formControlName="imgSrc" placeholder="Sisesta foto Url" required><br><br>
     <br>

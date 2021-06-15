@@ -22,8 +22,11 @@ export class ViewComponent implements OnInit {
     võti tuleb app-routing.module.ts failist, kooloni järelt*/
     let id = this.route.snapshot.paramMap.get("itemId");
     if (id) {
-    this.item = this.itemService.items[Number(id)];
-
+    // this.item = this.itemService.items[Number(id)];
+let item = this.itemService.items.find(item => item.id == Number(id));
+if (item) {
+  this.item = item;
+}
     }
   }
 

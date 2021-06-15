@@ -23,6 +23,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-settings.component';
 import { CategoryComponent } from './admin/category/category.component';
+import { UniqueCategoryPipe } from './pipes/unique-category.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CategoryComponent } from './admin/category/category.component';
     //TitlePipe,
     ShortenTitlePipe,
     CarouselSettingsComponent,
-    CategoryComponent
+    CategoryComponent,
+    UniqueCategoryPipe
   ],
   imports: [
     BrowserModule,

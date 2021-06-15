@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'admin', component: AdminHomeComponent},
   {path: 'ostukorv', component: CartComponent},
-  {path: 'toode/:itemId/', component: ViewComponent},
+  {path: 'toode/:itemId', component: ViewComponent},
   {path: 'admin/karuselli-seaded', component: CarouselSettingsComponent},
   {path: 'admin/kategooriad', component: CategoryComponent},
   {path: 'admin/lisa-ese', component: ItemAddComponent},

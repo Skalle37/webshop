@@ -12,14 +12,13 @@ import { CarouselImage } from '../models/carousel-image.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  items: Item[] = [];
+  itemsOriginal: Item[] = [];
+  itemsShown: Item[] = [];
   pauseOnHover = false;
   //images = [700, 533, 807, 124, 545, 131].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
   images: CarouselImage[] = [];
-  kuupaev = new Date();
-  arv = 0.5;
-  suurarv = 500000;
+
 
   constructor(private cartService: CartService, 
     private itemService: ItemService,
@@ -36,9 +35,11 @@ export class HomeComponent implements OnInit {
     this.itemService.getItemsFromDatabase().subscribe(itemsFromDb => {
       this.itemService.items = [];
       for (const key in itemsFromDb) {
-        this.items.push(itemsFromDb[key]);
+        // this.items.push(itemsFromDb[key]);
         this.itemService.items.push(itemsFromDb[key]);
       }
+      this.itemsOriginal = this.itemService.items;
+      this.itemsShown = this.itemsOriginal;
       // this.items = itemsFromDb;
       // this.itemService.items = itemsFromDb;
     });
@@ -47,7 +48,9 @@ export class HomeComponent implements OnInit {
     this.config.keyboard = this.carouselService.carouselSettings.keyboard;
     this.config.pauseOnHover = this.carouselService.carouselSettings.pauseOnHover;
   }
-
+  onCategorySelected(category: string) {
+    this.itemsShown = this.itemsOriginal.filter(item =>  item.category === category )
+  }
   // onSaveChanges() {
   //   this.items = this.itemService.items;
   //   this.config.interval = 100;

@@ -15,6 +15,8 @@ export class ItemService {
  url = "https://veebshop-e7553-default-rtdb.europe-west1.firebasedatabase.app/items.json";
 
   saveItemsToDatabase() {
+    // this.items = this.items.map(item => ({ ...item, id: Math.floor(Math.random()
+    // * (99999999 - 10000000) + 10000000) }))
     return this.http.put(this.url, this.items);
   }
 
