@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
   //images = [700, 533, 807, 124, 545, 131].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
   images: CarouselImage[] = [];
-
+  titleSortAsc = true;
+  priceSortAsc = true;
 
   constructor(private cartService: CartService, 
     private itemService: ItemService,
@@ -49,7 +50,41 @@ export class HomeComponent implements OnInit {
     this.config.pauseOnHover = this.carouselService.carouselSettings.pauseOnHover;
   }
   onCategorySelected(category: string) {
-    this.itemsShown = this.itemsOriginal.filter(item =>  item.category === category )
+    if (category=='all') {
+      this.itemsShown = this.itemsOriginal;
+    }
+      else {
+        this.itemsShown = this.itemsOriginal.filter(item => item.category === category);
+      }
+    
+  }
+
+  onSortByTitle()  {
+    if (this.titleSortAsc) {
+      this.itemsShown.sort((currentItem, nextItem) =>
+      currentItem.title.localeCompare(nextItem.title));
+      this.titleSortAsc = false;
+    } else {
+      this.itemsShown.sort((currentItem, nextItem) =>
+      nextItem.title.localeCompare(currentItem.title));
+      this.titleSortAsc = true;
+    }
+    // this.itemsShown.sort((currentItem, nextItem) => 
+    // currentItem.title.localeCompare(nextItem.title));
+  }
+
+  onSortByPrice()  {
+    if (this.priceSortAsc) {
+      this.itemsShown.sort((currentItem, nextItem) =>
+      currentItem.price - nextItem.price);
+      this.priceSortAsc = false;
+    } else {
+      this.itemsShown.sort((currentItem, nextItem) =>
+      nextItem.price - currentItem.price);
+      this.priceSortAsc = true;
+    }
+    // this.itemsShown.sort((currentItem, nextItem) => 
+    // currentItem.price - nextItem.price); // For ascending sort
   }
   // onSaveChanges() {
   //   this.items = this.itemService.items;

@@ -1,4 +1,6 @@
-<div>{{ item | json}}</div>
-<div>{{ item.title }}</div>
-<div>{{ item.price | itemPrice }}</div>
 
+<div *ngIf="item">
+    {{ item | json}}
+    <div>{{ item.title }}</div>
+    <div>{{ item.price | itemPrice }}</div>
+</div>

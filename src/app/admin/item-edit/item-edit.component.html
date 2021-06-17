@@ -5,7 +5,7 @@
 <br>
 <!-- formgroup nõuab app.module sisse ReactiveFormsModule -->
 
-<form (ngSubmit)="onSubmit(editItemForm)" [formGroup]="editItemForm">
+<form *ngIf="editItemForm" (ngSubmit)="onSubmit(editItemForm)" [formGroup]="editItemForm">
     <label>Nimetus</label><br>
     <input type="text" formControlName="title" placeholder="Sisesta nimetus" required><br><br>
     <label>Hind</label><br>

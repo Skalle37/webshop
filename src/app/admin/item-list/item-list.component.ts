@@ -13,15 +13,14 @@ export class ItemListComponent implements OnInit {
   constructor(private itemService: ItemService) { }
 
   ngOnInit(): void {
-    //this.items = this.itemService.items;
+   
     this.itemService.getItemsFromDatabase().subscribe(itemsFromDb => {
     this.itemService.items = [];
       for (const key in itemsFromDb) {
         this.items.push(itemsFromDb[key]);
         this.itemService.items.push(itemsFromDb[key]);
       }
-      // this.items = itemsFromDb;
-      // this.itemService.items = itemsFromDb;
+
     });
   }
 

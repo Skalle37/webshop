@@ -23,11 +23,21 @@ export class ViewComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get("itemId");
     if (id) {
     // this.item = this.itemService.items[Number(id)];
+
+    this.itemService.getItemsFromDatabase().subscribe(itemsFromDb => {
+      this.itemService.items = [];
+        for (const key in itemsFromDb) {
+          this.itemService.items.push(itemsFromDb[key]);
+        }
+  
+       
 let item = this.itemService.items.find(item => item.id == Number(id));
 if (item) {
   this.item = item;
 }
+});
+}
     }
+  
   }
 
-}
