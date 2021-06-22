@@ -7,7 +7,7 @@
 
 {{ arv | percent }} <br>
 {{ suurarv | percent }} <br> -->
-<ngb-carousel *ngIf="images">
+<ngb-carousel class="carousel-wrapper" *ngIf="images">
    <ng-template *ngFor="let image of images" ngbSlide>
      <div class="picsum-img-wrapper">
        <img src="{{image.url}}" alt="{{image.alt}}">
@@ -29,20 +29,27 @@
     seob muutuja typeskriptis.
    väärtus liigub otse inputist muutuja .ts-s-->
 
-    <span (click)="onCategorySelected('all')">Kõik kategooriad</span><br>
-   <span *ngFor="let category of itemsOriginal | uniqueCategory " (click)="onCategorySelected(category)">{{ category  }} <br></span><br>
+    <span (click)="onCategorySelected('all')" [ngClass]="{'category-selected': categorySelected == 'all'}">Kõik kategooriad</span><br>
+   <span *ngFor="let category of itemsOriginal | uniqueCategory "
+   [ngClass]="{'category-selected': categorySelected == category}" 
+   (click)="onCategorySelected(category)">{{ category  }} <br></span><br>
 
-<span>Järjesta:</span>
-<button (click)="onSortByTitle()">Tähestiku järgi</button>
-<button (click)="onSortByPrice()">Hinna järgi</button>
+    <div class="filter-bar">
+   <span>Järjesta:</span>
+<div class="filter-value" (click)="onSortByTitle()">Tähestiku järgi</div>
+<div class="filter-value" (click)="onSortByPrice()">Hinna järgi</div>
+</div>
 <br>
 <div *ngIf="itemsShown.length == 0">{{'Kraami pole' | titlecase }}</div>
-
-<div *ngFor="let item of itemsShown">
-   <img class="item-pict" routerLink="toode/{{item.id}}" src="{{item.imgSrc}}">
-   <div class="item-title"> {{ item.title | shortenTitle }}</div>
-   <div class="item-price"> {{ item.price | itemPrice }} </div>
-   <button class="btn btn-danger"(click)="onAddToCart(item)">{{'Lisa korvi' | uppercase}}</button>
-   <!-- ( sündmuse ) event binding sündmuse sidumine -->
+<div class="items-wrapper">
+  <div class="item" *ngFor="let item of itemsShown">
+    <img class="item-pict" routerLink="toode/{{item.id}}" src="{{item.imgSrc}}">
+     <div class="add-to-cart-btn-wrapper ">
+      <div class="add-to-cart-btn"(click)="onAddToCart(item)">{{'Lisa korvi' | uppercase}}</div>
+  </div>
+     <div class="item-title"> {{ item.title | shortenTitle }}</div>
+    <div class="item-price"> {{ item.price | itemPrice }} </div>
+    
+    <!-- ( sündmuse ) event binding sündmuse sidumine -->
+  </div>
 </div>
- 
